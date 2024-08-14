@@ -1,0 +1,23 @@
+{
+  "name": "file-converter",
+  "version": "1.0.0",
+  "description": "A web application to convert PSD, EPS, HEIC, TIF files to JPG or PNG formats",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "formidable": "^2.0.1",
+    "next": "^12.0.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sharp": "^0.29.3",
+    "imagemagick": "^0.1.3"
+  }
+}
