@@ -18,8 +18,14 @@ const handler = async (req, res) => {
       return res.status(500).json({ error: 'Error parsing the form' });
     }
 
-    const file = files.file[0]; // 単一ファイルを処理
-    const filePath = file.filepath;
+    console.log(files);  // filesオブジェクトの中身をログに出力
+
+    if (!files.file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    const file = Array.isArray(files.file) ? files.file[0] : files.file;
+    const filePath = file.filepath || file.path;  // どちらのプロパティが存在するか確認
     const fileExt = path.extname(file.originalFilename).toLowerCase();
 
     const outputExt = '.jpg'; // 出力ファイル形式
@@ -43,7 +49,6 @@ const handler = async (req, res) => {
       }
 
       try {
-        // 生成された出力ファイルが存在するか確認
         const fileExists = await fs.access(outputFilePath).then(() => true).catch(() => false);
 
         if (!fileExists) {
