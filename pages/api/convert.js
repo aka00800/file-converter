@@ -25,11 +25,10 @@ export default async function handler(req, res) {
     }
 
     const filePath = file.filepath;
-    console.log("Uploaded file path:", filePath);  // デバッグ用のログ出力
-
     const outputFormat = fields.format || 'jpg'; // デフォルトの出力形式をjpgに設定
 
-    const outputFilePath = path.join(process.cwd(), 'converted', `output.${outputFormat}`);
+    // Vercel上で書き込み可能な一時ディレクトリにファイルを保存
+    const outputFilePath = path.join('/tmp', `output.${outputFormat}`);
 
     try {
       // Sharpを使用して画像を変換する
